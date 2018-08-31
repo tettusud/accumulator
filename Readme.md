@@ -20,6 +20,7 @@
     java -cp target\addition-1.0.0.jar com.ubs.addition.Application
          
          
+  ### Sample Output
          
-         
+   ![Class Diagram](output.jpg)      
          
