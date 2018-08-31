@@ -27,14 +27,14 @@ public class DelimitorProcessor implements InputProcessor<String, String> {
             return new String[]{};
         }
 
-        String inputStr= extract(numbers);
-        String[]  inputNumbers= parse(inputStr);
+        String inputStr = extract(numbers);
+        String[] inputNumbers = parse(inputStr);
         return inputNumbers;
     }
 
 
-    private String replaceSpecialCharacter(String numbers){
-       return numbers.replaceAll("[-\\[\\]{}()*+?.\\\\\\\\^$|#\\\\s]", "\\\\$0");
+    private String replaceSpecialCharacter(String numbers) {
+        return numbers.replaceAll("[-\\[\\]{}()*+?.\\\\\\\\^$#|\\\\s]", "\\\\$0");
     }
 
     /***
@@ -54,6 +54,8 @@ public class DelimitorProcessor implements InputProcessor<String, String> {
     }
 
     private String[] parse(String numbers) {
+        //handle or conditions in special case ,replace all pipes but first
+        this.delimiter = this.delimiter.replaceFirst(Pattern.quote("\\|"),"|");
         return numbers.split(this.delimiter);
     }
 }

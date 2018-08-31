@@ -93,8 +93,32 @@ public class InputProcessorTest {
 
     @Test
     public void testArrayWithCustomDelimiterWithMetaCharacters(){
-        String[] actual= inputProcessor.process("//|||\\n1|||2|||3");
+        String[] actual= inputProcessor.process("//###\\n1###2###3");
         String[] expectedResult = new String[]{"1","2","3"};
+        assertTestCases(expectedResult,actual);
+    }
+
+    @Test
+    public void testArrayWithCustomDelimiterWithMultiDelimiters(){
+        String[] actual= inputProcessor.process("//*|%\\n1*2%3");
+        String[] expectedResult = new String[]{"1","2","3"};
+        assertTestCases(expectedResult,actual);
+    }
+
+    @Test
+    public void testSpecialCaseWithPipeAsDelimiter(){
+        String[] actual= inputProcessor.process("//*||\\n1*2|3|4");
+        String[] expectedResult = new String[]{"1","2","3","4"};
+        assertTestCases(expectedResult,actual);
+    }
+
+    /**
+     * 9. Make sure you can also handle multiple delimiters with length longer than one character.
+     */
+    @Test
+    public void testArrayWithCustomDelimiterWithMultiDelimitersWithAnyLength(){
+        String[] actual= inputProcessor.process("//*|%%\\n1*2%%3*4");
+        String[] expectedResult = new String[]{"1","2","3","4"};
         assertTestCases(expectedResult,actual);
     }
 
