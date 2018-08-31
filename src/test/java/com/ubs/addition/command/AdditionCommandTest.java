@@ -1,8 +1,10 @@
 package com.ubs.addition.command;
 
-import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class AdditionCommandTest {
 
@@ -99,6 +101,16 @@ public class AdditionCommandTest {
     public void testNumberGreaterThan1000() {
         Integer actual = getActual("2,1001,3");
         assertTestCase(5, actual);
+    }
+
+    /**
+     * 6.Numbers bigger than 1000 should be ignored, so adding 2 + 1001 = 2.
+     */
+    @Test
+    public void testForNegativeNumbers() {
+        String negativeArray ="[-6, -4, -5]";
+        Exception exception = assertThrows(IllegalArgumentException.class, () ->   getActual("2,-6,-4,-5,3"));
+        assertEquals("negatives not allowed -"+negativeArray, exception.getMessage());
     }
 
 

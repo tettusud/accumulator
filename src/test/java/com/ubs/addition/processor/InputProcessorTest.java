@@ -1,14 +1,12 @@
 package com.ubs.addition.processor;
 
 import com.ubs.addition.processor.impl.DelimiterProcessor;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 
-import static junit.framework.TestCase.assertTrue;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 
 /***
  *   Test case for InputProcess
@@ -16,7 +14,7 @@ import static org.junit.Assert.assertNotNull;
 public class InputProcessorTest {
 
     InputProcessor<String,String> inputProcessor;
-    @Before
+    @BeforeAll
     public void setUp(){
         this.inputProcessor = new DelimiterProcessor();
     }
