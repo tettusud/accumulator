@@ -26,10 +26,7 @@ public class DelimiterProcessor implements InputProcessor<String, String> {
         if (numbers.isEmpty()) {
             return new String[]{};
         }
-
-        String inputStr = extract(numbers);
-        String[] inputNumbers = parse(inputStr);
-        return inputNumbers;
+        return parse(extract(numbers));
     }
 
 

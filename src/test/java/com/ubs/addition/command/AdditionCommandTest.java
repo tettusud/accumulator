@@ -1,14 +1,18 @@
 package com.ubs.addition.command;
 
 
+import com.ubs.addition.processor.InputProcessor;
+import com.ubs.addition.processor.impl.DelimiterProcessor;
 import org.junit.jupiter.api.Test;
+
+import java.util.Arrays;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class AdditionCommandTest {
 
-    Command<Integer, String> command;
+    Command<Integer> command;
 
 
     @Test
@@ -59,10 +63,17 @@ public class AdditionCommandTest {
      */
     @Test
     public void testArrayWithChangeDelimiterPatternSeries() {
-        command = getCommand();
-        Integer actual = command.execute("//;\\n1;2");
+        InputProcessor<String,String> inputProcessor =new DelimiterProcessor();
+        String numbers= "//;\\n1;2";
+        String[] processed=  inputProcessor.process(numbers);
+        //return new AdditionCommand(stringToIntegerArray(processed));
+        command = new AdditionCommand(stringToIntegerArray(processed));
+        Integer actual = command.execute();
         assertTestCase(3, actual);
-        actual = command.execute("1;2;3;4");
+        // update
+        numbers ="1;2;3;4";
+        processed=  inputProcessor.process(numbers);
+        actual =  new AdditionCommand(stringToIntegerArray(processed)).execute();
         assertTestCase(10, actual);
     }
 
@@ -123,8 +134,13 @@ public class AdditionCommandTest {
         assertTestCase(10, actual);
     }
 
-    private AdditionCommand getCommand() {
-        return new AdditionCommand();
+
+
+    private AdditionCommand getCommand(String numbers) {
+        InputProcessor<String,String> inputProcessor =new DelimiterProcessor();
+        String[] processed=  inputProcessor.process(numbers);
+
+        return new AdditionCommand(stringToIntegerArray(processed));
     }
 
     /**
@@ -134,7 +150,7 @@ public class AdditionCommandTest {
      * @return
      */
     private Integer getActual(String numbers) {
-        return getCommand().execute(numbers);
+        return getCommand(numbers).execute();
 
     }
 
@@ -142,5 +158,9 @@ public class AdditionCommandTest {
         assertEquals(expected, actual);
     }
 
-
+    private Integer[] stringToIntegerArray(String[] input){
+        return Arrays.stream(input)
+                .map(i -> Integer.parseInt(i))// convert to integer
+                .toArray(size->new Integer[size]);
+    }
 }

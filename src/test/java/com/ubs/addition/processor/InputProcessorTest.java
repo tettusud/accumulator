@@ -2,6 +2,7 @@ package com.ubs.addition.processor;
 
 import com.ubs.addition.processor.impl.DelimiterProcessor;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
@@ -14,7 +15,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class InputProcessorTest {
 
     InputProcessor<String,String> inputProcessor;
-    @BeforeAll
+    @BeforeEach
     public void setUp(){
         this.inputProcessor = new DelimiterProcessor();
     }

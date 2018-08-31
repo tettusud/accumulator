@@ -1,44 +1,38 @@
 package com.ubs.addition.command;
 
 
-import com.ubs.addition.processor.InputProcessor;
-import com.ubs.addition.processor.impl.DelimiterProcessor;
-
 import java.util.Arrays;
 
 /**
  * Command model to perform additions
  */
-public class AdditionCommand implements Command<Integer, String> {
+public class AdditionCommand implements Command<Integer> {
 
+    private Integer[] processed;
 
-    private InputProcessor<String, String> inputProcessor;
-
-    public AdditionCommand() {
-        this.inputProcessor = new DelimiterProcessor();
+    public AdditionCommand(Integer[] processed) {
+        this.processed = processed;
     }
 
+
     @Override
-    public Integer execute(String numbers) {
-        String[] processed = this.inputProcessor.process(numbers);
-        if (processed.length == 0) {
+    public Integer execute() {
+        if (this.processed.length == 0) {
             return 0;
         } else if (processed.length == 1) {    //just return the number if only one
-            return Integer.parseInt(processed[0]);
+            return this.processed[0];
         }
-
         //handle negative numbers
-        int[] negativeNumbers=  Arrays.stream(processed)
-                .mapToInt(i -> Integer.parseInt(i))// convert to integer
-                .filter(i -> i<0)
-                .toArray();
+        Integer[] negativeNumbers = Arrays.stream(processed)
+                .filter(i -> i<0 )
+                 .toArray( size -> new Integer[size]);
 
-        if(negativeNumbers.length >0){
-            throw new IllegalArgumentException("negatives not allowed -"+ Arrays.toString(negativeNumbers));
+        if (negativeNumbers.length > 0) {
+            throw new IllegalArgumentException("negatives not allowed -" + Arrays.toString(negativeNumbers));
         }
 
         return Arrays.stream(processed)
-                .mapToInt(i -> Integer.parseInt(i))// convert to integer
+                .mapToInt(i -> i)// convert to integer
                 .filter(i -> i <= 1000)  // filter less that 1000
                 .sum();  //make a sum
     }
