@@ -6,6 +6,13 @@ import com.ubs.addition.convertors.StringIntegerArrayConvertor;
 import com.ubs.addition.processor.InputProcessor;
 import com.ubs.addition.processor.impl.DelimiterProcessor;
 
+/***
+ *  this service is entry point for handling input and applying the trans
+ *
+ *    1. Process the input
+ *    2. Conver the input from String to Integer
+ *    3. Call accumulate and output
+ */
 public class AccumalatorService implements CalculatorService<String,Integer> {
 
     InputProcessor<String, String> inputProcessor;

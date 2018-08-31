@@ -1,7 +1,6 @@
 package com.ubs.addition.calculator;
 
 import com.ubs.addition.calculator.impl.CalculatorImpl;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

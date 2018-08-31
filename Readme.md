@@ -12,7 +12,7 @@
    * Build the maven application
     
    
-      mvn clean install
+    mvn clean install
        
        
    *  Run the application

@@ -3,7 +3,7 @@ package com.ubs.addition.convertors;
 import java.util.Arrays;
 
 /***
- *
+ *  This class converts array of String to array of Integer
  */
 public class StringIntegerArrayConvertor implements  Convertor<String,Integer>{
     @Override

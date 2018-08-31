@@ -1,6 +1,5 @@
 package com.ubs.addition.service;
 
-import com.ubs.addition.service.AccumalatorService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
