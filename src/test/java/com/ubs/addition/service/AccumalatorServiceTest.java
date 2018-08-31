@@ -1,35 +1,35 @@
-package com.ubs.addition;
+package com.ubs.addition.service;
 
-import org.junit.jupiter.api.BeforeAll;
+import com.ubs.addition.service.AccumalatorService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class CalculatorServiceTest {
+public class AccumalatorServiceTest {
 
-    CalculatorService calculatorService;
+    AccumalatorService calculatorService;
 
     @BeforeEach
     public void setUp(){
-        this.calculatorService= new CalculatorService();
+        this.calculatorService= new AccumalatorService();
     }
 
 
     @Test
     public void testSimpleAddition(){
-        Integer actual = this.calculatorService.accumalate("2,3");
+        Integer actual = this.calculatorService.execute("2,3");
         Integer expected = 5;
         assertEquals(expected, actual);
     }
 
     @Test
     public void testChangeDelimiter(){
-        Integer actual = this.calculatorService.accumalate("//;\\n1;2");
+        Integer actual = this.calculatorService.execute("//;\\n1;2");
         Integer expected = 3;
         assertEquals(expected, actual);
 
-        actual = this.calculatorService.accumalate("1;2;3;4");
+        actual = this.calculatorService.execute("1;2;3;4");
         expected = 10;
         assertEquals(expected, actual);
 
