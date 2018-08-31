@@ -1,6 +1,6 @@
 package com.ubs.addition.processor;
 
-import com.ubs.addition.processor.impl.DelimitorProcessor;
+import com.ubs.addition.processor.impl.DelimiterProcessor;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -18,7 +18,7 @@ public class InputProcessorTest {
     InputProcessor<String,String> inputProcessor;
     @Before
     public void setUp(){
-        this.inputProcessor = new DelimitorProcessor();
+        this.inputProcessor = new DelimiterProcessor();
     }
 
     @Test

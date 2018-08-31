@@ -8,7 +8,7 @@ import java.util.regex.Pattern;
 /***
  * This handles input string processing and extracts the input splitting by computed delimiter pattern
  */
-public class DelimitorProcessor implements InputProcessor<String, String> {
+public class DelimiterProcessor implements InputProcessor<String, String> {
 
     private static final String DELIMITER_CHANGE_EXTRACT_PATTERN = "^(//)(.*)(\\\\n)(.*)";
     //Pattern hasDelimiterChangePattern = Pattern.compile(DELIMITER_CHANGE_PATTERN);
@@ -16,7 +16,7 @@ public class DelimitorProcessor implements InputProcessor<String, String> {
     // delimiter holder
     private String delimiter = null;
 
-    public DelimitorProcessor() {
+    public DelimiterProcessor() {
         this.delimiter = DEFAULT_DELIMITER_PATTERN;
     }
 
